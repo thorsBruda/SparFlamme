@@ -284,10 +284,10 @@ h1, h2, h3 { font-family: 'DM Serif Display', serif; font-weight: 400; line-heig
 .about-timeline { width: 100%; max-width: 320px; }
 .tl-item { display: flex; gap: 1rem; align-items: start; margin-bottom: 1.5rem; }
 .tl-item:last-child { margin-bottom: 0; }
-.tl-dot-wrap { display: flex; flex-direction: column; align-items: center; }
+.tl-dot-wrap { display: flex; flex-direction: column; align-items: center; height: 100%;  }
 .tl-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--flame); flex-shrink: 0; border: 3px solid var(--cream-warm); }
-.tl-line { width: 2px; flex-grow: 1; min-height: 40px; background: rgba(232,87,31,0.2); }
-.tl-item:last-child .tl-line { display: none; }
+.tl-line { width: 2px; flex: 1; background: rgba(232,87,31,0.2); }
+.tl-item { display: flex; gap: 1rem; align-items: stretch; margin-bottom: 1.5rem; }
 .tl-year { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--flame); }
 .tl-desc { font-size: 0.82rem; color: var(--text-mid); line-height: 1.5; }
 

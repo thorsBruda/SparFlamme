@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karriere | Deine Sparflamme</title>
+    <meta name="description" content="Werde Teil von Deine Sparflamme – offene Stellen im Energievertrieb, Teamleitung und IT.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+    <div class="nav-inner">
+        <a href="/" class="logo"><div class="logo-icon"><svg viewBox="0 0 22 22" fill="none"><path d="M11 2C11 2 6 8 6 12.5C6 15.5 8 18 11 18.5C14 18 16 15.5 16 12.5C16 8 11 2 11 2Z" fill="white" opacity="0.9"/><path d="M11 7C11 7 8.5 10.5 8.5 12.8C8.5 14.5 9.6 15.7 11 16C12.4 15.7 13.5 14.5 13.5 12.8C13.5 10.5 11 7 11 7Z" fill="#FFE0B2"/></svg></div><span class="logo-name">Deine <span>Sparflamme</span></span></a>
+        <ul class="nav-links">
+            <li><a href="/#vorteile">Vorteile</a></li>
+            <li><a href="/#so-gehts">So geht's</a></li>
+            <li><a href="/aussendienst.html">Außendienst</a></li>
+            <li><a href="/#ueber-uns">Über uns</a></li>
+            <li><a href="/#kontakt" class="nav-cta">Rückruf anfordern</a></li>
+        </ul>
+        <button class="hamburger" onclick="document.getElementById('mobileNav').classList.add('open')" aria-label="Menü"><span></span><span></span><span></span></button>
+    </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+    <button class="mobile-close" onclick="this.parentElement.classList.remove('open')">&times;</button>
+    <a href="/#vorteile">Vorteile</a><a href="/#so-gehts">So geht's</a><a href="/aussendienst.html">Außendienst</a><a href="/#ueber-uns">Über uns</a><a href="/#kontakt">Kontakt</a>
+    <a href="/karriere.html" style="font-size:1rem;color:var(--flame)">Karriere</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+    <h1>Karriere bei <em>Deine Sparflamme</em></h1>
+    <p>Wir wachsen – und suchen Menschen, die den Energiemarkt mit uns verändern wollen.</p>
+</div>
+
+<!-- JOBS -->
+<section class="sec karriere">
+    <div class="sec-header reveal">
+        <div class="sec-tag">Offene Stellen</div>
+        <h2 class="sec-title">Werde Teil unseres Teams</h2>
+        <p class="sec-sub">Ob Vertrieb, Führung oder Technik – wir bieten spannende Rollen in einem wachsenden Unternehmen mit flachen Hierarchien.</p>
+    </div>
+
+    <div class="jobs-grid">
+
+        <!-- JOB 1 -->
+        <div class="job-card reveal" onclick="toggleJob(this)">
+            <div>
+                <div class="job-title">Energieberater im Außendienst (D2D)</div>
+                <div class="job-meta">
+                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 12.25s5.25-3 5.25-7A5.25 5.25 0 007 .75a5.25 5.25 0 00-5.25 4.5c0 4 5.25 7 5.25 7z"/><circle cx="7" cy="5.25" r="1.75"/></svg> Deutschlandweit</span>
+                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="6"/><path d="M7 3.5V7l2.5 1.5"/></svg> Vollzeit</span>
+                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3.5" width="12" height="8" rx="1.5"/><path d="M1 7h12"/></svg> Fixum + Provision</span>
+                </div>
+            </div>
+            <div class="job-arrow"><svg viewBox="0 0 18 18" fill="none"><path d="M6.5 4.5l5 4.5-5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="job-detail" style="grid-column:1/-1">
+                <p><strong>Deine Rolle:</strong> Du berätst Privathaushalte direkt vor Ort zu ihren Strom- und Gastarifen. Persönlich, ehrlich, ohne Drückerkolonnen-Methoden. Du zeigst den Kunden auf dem Tablet ihren Einsparpotenzial und begleitest sie durch den digitalen Wechselprozess.</p>
+                <p><strong>Was du mitbringst:</strong></p>
+                <ul>
+                    <li>Kommunikationsstärke und Freude am Umgang mit Menschen</li>
+                    <li>Idealerweise Erfahrung im Vertrieb, Außendienst oder D2D</li>
+                    <li>Führerschein Klasse B</li>
+                    <li>Selbstständige, zuverlässige Arbeitsweise</li>
+                    <li>Gutes Deutsch in Wort und Schrift</li>
+                </ul>
+                <p><strong>Was wir bieten:</strong></p>
+                <ul>
+                    <li>Festes Grundgehalt + attraktives Provisionsmodell</li>
+                    <li>Umfassende Einarbeitung und laufende Schulungen</li>
+                    <li>Firmenwagen oder Fahrtkostenzuschuss</li>
+                    <li>Digitale Tools – Tablet, CRM, alles gestellt</li>
+                    <li>Aufstiegsmöglichkeiten zum Teamleiter</li>
+                </ul>
+                <div class="job-apply"><a href="mailto:karriere@deine-sparflamme.de?subject=Bewerbung%20Energieberater%20D2D" class="btn btn-flame">Jetzt bewerben</a></div>
+            </div>
+        </div>
+
+        <!-- JOB 2 -->
+        <div class="job-card reveal" onclick="toggleJob(this)">
+            <div>
+                <div class="job-title">Teamleiter Außendienst</div>
+                <div class="job-meta">
+                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 12.25s5.25-3 5.25-7A5.25 5.25 0 007 .75a5.25 5.25 0 00-5.25 4.5c0 4 5.25 7 5.25 7z"/><circle cx="7" cy="5.25" r="1.75"/></svg> Nürnberg + Region</span>
+                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="6"/><path d="M7 3.5V7l2.5 1.5"/></svg> Vollzeit</span>
+                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3.5" width="12" height="8" rx="1.5"/><path d="M1 7h12"/></svg> Fixum + Team-Provision</span>
+                </div>
+            </div>
+            <div class="job-arrow"><svg viewBox="0 0 18 18" fill="none"><path d="M6.5 4.5l5 4.5-5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="job-detail" style="grid-column:1/-1">
+                <p><strong>Deine Rolle:</strong> Du führst ein kleines Team von Energieberatern im Außendienst. Du bist selbst aktiv vor Ort, coachst dein Team, planst Einsätze und sorgst für Qualität in der Beratung. Du bist die Schnittstelle zwischen Vertrieb und Geschäftsführung.</p>
+                <p><strong>Was du mitbringst:</strong></p>
+                <ul>
+                    <li>Mindestens 1 Jahr Erfahrung im Vertrieb/Außendienst</li>
+                    <li>Erste Führungserfahrung oder starke Motivation zur Teamleitung</li>
+                    <li>Organisationstalent und Eigenmotivation</li>
+                    <li>Führerschein Klasse B</li>
+                </ul>
+                <p><strong>Was wir bieten:</strong></p>
+                <ul>
+                    <li>Grundgehalt + Team-Provision (du profitierst vom Erfolg deines Teams)</li>
+                    <li>Firmenwagen</li>
+                    <li>Echte Gestaltungsmöglichkeiten in einem wachsenden Unternehmen</li>
+                    <li>Direkter Draht zur Geschäftsführung</li>
+                </ul>
+                <div class="job-apply"><a href="mailto:karriere@deine-sparflamme.de?subject=Bewerbung%20Teamleiter%20Außendienst" class="btn btn-flame">Jetzt bewerben</a></div>
+            </div>
+        </div>
+
+        <!-- JOB 3 -->
+        <div class="job-card reveal" onclick="toggleJob(this)">
+            <div>
+                <div class="job-title">IT-Entwickler Fullstack (CTO-Track)</div>
+                <div class="job-meta">
+                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 12.25s5.25-3 5.25-7A5.25 5.25 0 007 .75a5.25 5.25 0 00-5.25 4.5c0 4 5.25 7 5.25 7z"/><circle cx="7" cy="5.25" r="1.75"/></svg> Nürnberg / Remote</span>
+                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="6"/><path d="M7 3.5V7l2.5 1.5"/></svg> Vollzeit</span>
+                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3.5" width="12" height="8" rx="1.5"/><path d="M1 7h12"/></svg> Festgehalt</span>
+                </div>
+            </div>
+            <div class="job-arrow"><svg viewBox="0 0 18 18" fill="none"><path d="M6.5 4.5l5 4.5-5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="job-detail" style="grid-column:1/-1">
+                <p><strong>Deine Rolle:</strong> Du baust unsere interne Plattform auf: Tarifvergleich, Kundenportal, CRM-Anbindung und Automatisierung. Als erster Inhouse-Entwickler hast du maximale Gestaltungsfreiheit – mit klarer Perspektive Richtung CTO.</p>
+                <p><strong>Was du mitbringst:</strong></p>
+                <ul>
+                    <li>Erfahrung mit modernem Web-Stack (React, Node/PHP, Datenbanken)</li>
+                    <li>Interesse an API-Integrationen und Automatisierung</li>
+                    <li>Eigenverantwortliche Arbeitsweise</li>
+                    <li>Bonus: Erfahrung mit n8n, Energiemarkt-Schnittstellen (EDIFACT) oder SaaS-Plattformen</li>
+                </ul>
+                <p><strong>Was wir bieten:</strong></p>
+                <ul>
+                    <li>Festgehalt mit klarer Entwicklungsperspektive</li>
+                    <li>Remote-Arbeit möglich (Nürnberg-Präsenz 1–2x/Woche ideal)</li>
+                    <li>Freie Technologiewahl und eigene Architekturentscheidungen</li>
+                    <li>CTO-Track: wachse mit dem Unternehmen in die technische Leitung</li>
+                </ul>
+                <div class="job-apply"><a href="mailto:karriere@deine-sparflamme.de?subject=Bewerbung%20IT-Entwickler%20Fullstack" class="btn btn-flame">Jetzt bewerben</a></div>
+            </div>
+        </div>
+
+        <!-- JOB 4 -->
+        <div class="job-card reveal" onclick="toggleJob(this)">
+            <div>
+                <div class="job-title">Initiativbewerbung</div>
+                <div class="job-meta">
+                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 12.25s5.25-3 5.25-7A5.25 5.25 0 007 .75a5.25 5.25 0 00-5.25 4.5c0 4 5.25 7 5.25 7z"/><circle cx="7" cy="5.25" r="1.75"/></svg> Flexibel</span>
+                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="6"/><path d="M7 3.5V7l2.5 1.5"/></svg> Voll- / Teilzeit</span>
+                </div>
+            </div>
+            <div class="job-arrow"><svg viewBox="0 0 18 18" fill="none"><path d="M6.5 4.5l5 4.5-5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="job-detail" style="grid-column:1/-1">
+                <p>Keine passende Stelle dabei? Kein Problem. Wenn du Lust hast, den Energiemarkt mit uns aufzumischen, schick uns einfach eine Nachricht. Wir freuen uns über jede Bewerbung – ob im Vertrieb, Marketing, Backoffice oder einem ganz anderen Bereich.</p>
+                <div class="job-apply"><a href="mailto:karriere@deine-sparflamme.de?subject=Initiativbewerbung" class="btn btn-flame">Initiativ bewerben</a></div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="cta-band">
+    <div class="cta-band-inner reveal">
+        <h2>Bereit für den nächsten Schritt?</h2>
+        <p>Schick uns deine Bewerbung per E-Mail oder ruf einfach an. Kein Anschreiben nötig – erzähl uns einfach, wer du bist.</p>
+        <a href="mailto:karriere@deine-sparflamme.de" class="btn btn-white">karriere@deine-sparflamme.de</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="/" class="logo"><div class="logo-icon" style="width:32px;height:32px;border-radius:8px;"><svg viewBox="0 0 22 22" fill="none" style="width:18px;height:18px;"><path d="M11 2C11 2 6 8 6 12.5C6 15.5 8 18 11 18.5C14 18 16 15.5 16 12.5C16 8 11 2 11 2Z" fill="white" opacity="0.9"/><path d="M11 7C11 7 8.5 10.5 8.5 12.8C8.5 14.5 9.6 15.7 11 16C12.4 15.7 13.5 14.5 13.5 12.8C13.5 10.5 11 7 11 7Z" fill="#FFE0B2"/></svg></div><span class="logo-name" style="color:white">Deine <span>Sparflamme</span></span></a>
+                <p>Dein persönlicher Energiemakler. Hauptsitz Nürnberg, deutschlandweit aktiv.</p>
+            </div>
+            <div class="footer-col"><h4>Navigation</h4><ul><li><a href="/#vorteile">Vorteile</a></li><li><a href="/#so-gehts">So geht's</a></li><li><a href="/aussendienst.html">Außendienst</a></li><li><a href="/#ueber-uns">Über uns</a></li><li><a href="/#kontakt">Kontakt</a></li></ul></div>
+            <div class="footer-col"><h4>Rechtliches</h4><ul><li><a href="/impressum.html">Impressum</a></li><li><a href="/datenschutz.html">Datenschutz</a></li><li><a href="/agb.html">AGB</a></li><li><a href="/widerrufsbelehrung.html">Widerrufsbelehrung</a></li></ul></div>
+            <div class="footer-col"><h4>Unternehmen</h4><ul><li><a href="/karriere.html">Karriere</a></li><li><a href="mailto:info@deine-sparflamme.de">E-Mail</a></li><li><a href="tel:+4991112345678">Anrufen</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><span>&copy; 2026 Deine Sparflamme. Alle Rechte vorbehalten.</span><div class="footer-legal"><a href="/impressum.html">Impressum</a><a href="/datenschutz.html">Datenschutz</a></div></div>
+    </div>
+</footer>
+
+<script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+    const revealObs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    function toggleJob(card) {
+        const detail = card.querySelector('.job-detail');
+        const arrow = card.querySelector('.job-arrow');
+        const isOpen = detail.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.job-detail').forEach(d => d.classList.remove('open'));
+        document.querySelectorAll('.job-arrow').forEach(a => a.style.transform = '');
+        if (!isOpen) {
+            detail.classList.add('open');
+            arrow.style.transform = 'rotate(90deg)';
+        }
+    }
+</script>
+</body>
+</html>

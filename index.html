@@ -8,493 +8,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --flame: #E8571F;
-            --flame-light: #FF8A50;
-            --flame-glow: #FFC297;
-            --ember: #C43E0C;
-            --navy: #0B1A2E;
-            --navy-mid: #132B4A;
-            --navy-light: #1E3A5F;
-            --cream: #FDF8F4;
-            --cream-warm: #FFF1E8;
-            --sand: #F5EDE6;
-            --text: #1A1A1A;
-            --text-mid: #555;
-            --text-soft: #888;
-            --green: #1B9E4B;
-            --white: #FFFFFF;
-            --r-sm: 6px;
-            --r-md: 12px;
-            --r-lg: 20px;
-            --r-pill: 100px;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Manrope', sans-serif;
-            color: var(--text);
-            background: var(--cream);
-            overflow-x: hidden;
-            line-height: 1.65;
-        }
-
-        h1, h2, h3 { font-family: 'DM Serif Display', serif; font-weight: 400; line-height: 1.15; }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-
-        /* ═══ NAV ═══ */
-        .nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            padding: 1.1rem 2rem;
-            transition: all 0.4s ease;
-        }
-        .nav.scrolled {
-            background: rgba(253, 248, 244, 0.95);
-            backdrop-filter: blur(16px);
-            box-shadow: 0 1px 0 rgba(0,0,0,0.05);
-        }
-        .nav-inner {
-            max-width: 1200px; margin: 0 auto;
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        .logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--text); }
-        .logo-icon {
-            width: 38px; height: 38px;
-            background: linear-gradient(135deg, var(--flame), var(--ember));
-            border-radius: 10px; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 2px 12px rgba(232,87,31,0.25);
-        }
-        .logo-icon svg { width: 22px; height: 22px; }
-        .logo-name { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 1.15rem; letter-spacing: -0.03em; }
-        .logo-name span { color: var(--flame); }
-
-        .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
-        .nav-links a {
-            text-decoration: none; color: var(--text-mid); font-weight: 600;
-            font-size: 0.88rem; letter-spacing: 0.01em; transition: color 0.2s;
-        }
-        .nav-links a:hover { color: var(--flame); }
-        .nav-cta {
-            background: var(--navy) !important; color: var(--white) !important;
-            padding: 0.6rem 1.4rem; border-radius: var(--r-pill);
-            font-size: 0.85rem !important; transition: all 0.3s !important;
-        }
-        .nav-cta:hover { background: var(--flame) !important; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,87,31,0.3); }
-
-        .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; }
-        .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: 0.3s; }
-
-        .mobile-nav { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--cream); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
-        .mobile-nav.open { display: flex; }
-        .mobile-nav a { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--text); text-decoration: none; }
-        .mobile-nav a:hover { color: var(--flame); }
-        .mobile-close { position: absolute; top: 1.5rem; right: 2rem; background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text); }
-
-        /* ═══ HERO ═══ */
-        .hero {
-            min-height: 100vh; display: flex; align-items: center;
-            padding: 8rem 2rem 5rem; position: relative; overflow: hidden;
-        }
-        .hero-bg {
-            position: absolute; inset: 0; z-index: 0;
-            background: radial-gradient(ellipse 70% 50% at 75% 30%, rgba(255,194,151,0.18), transparent),
-                        radial-gradient(ellipse 50% 40% at 10% 80%, rgba(232,87,31,0.06), transparent);
-        }
-        .hero-texture {
-            position: absolute; inset: 0; z-index: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000' fill-opacity='0.015'%3E%3Ccircle cx='20' cy='20' r='1'/%3E%3C/g%3E%3C/svg%3E");
-        }
-
-        .hero-content {
-            max-width: 1200px; margin: 0 auto; width: 100%;
-            display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 4rem; align-items: center;
-            position: relative; z-index: 1;
-        }
-
-        .hero-eyebrow {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            font-weight: 700; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
-            color: var(--flame); margin-bottom: 1.5rem;
-            opacity: 0; animation: fadeUp 0.7s ease forwards;
-        }
-        .hero-eyebrow::before {
-            content: ''; width: 28px; height: 2px; background: var(--flame); border-radius: 2px;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.6rem, 5vw, 4.2rem);
-            letter-spacing: -0.02em; margin-bottom: 1.5rem;
-            opacity: 0; animation: fadeUp 0.7s ease forwards 0.1s;
-        }
-        .hero h1 em { font-style: italic; color: var(--flame); }
-
-        .hero-sub {
-            font-size: 1.15rem; color: var(--text-mid); line-height: 1.75;
-            max-width: 520px; margin-bottom: 2.5rem;
-            opacity: 0; animation: fadeUp 0.7s ease forwards 0.2s;
-        }
-
-        .hero-actions {
-            display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
-            opacity: 0; animation: fadeUp 0.7s ease forwards 0.3s;
-        }
-
-        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 2rem; border-radius: var(--r-pill); font-weight: 700; font-size: 0.95rem; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease; font-family: 'Manrope', sans-serif; }
-        .btn-flame { background: var(--flame); color: white; }
-        .btn-flame:hover { background: var(--ember); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(232,87,31,0.3); }
-        .btn-outline { background: transparent; color: var(--text); border: 2px solid rgba(0,0,0,0.1); }
-        .btn-outline:hover { border-color: var(--flame); color: var(--flame); }
-        .btn-white { background: white; color: var(--flame); }
-        .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
-        .btn svg { width: 18px; height: 18px; }
-
-        /* Hero card */
-        .hero-card-wrapper {
-            position: relative;
-            opacity: 0; animation: fadeUp 0.9s ease forwards 0.35s;
-        }
-        .hero-card {
-            background: var(--white); border-radius: var(--r-lg); padding: 2.5rem;
-            box-shadow: 0 20px 60px rgba(11,26,46,0.07), 0 1px 3px rgba(0,0,0,0.03);
-            border: 1px solid rgba(0,0,0,0.04);
-        }
-        .hero-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; }
-        .hero-card-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; color: var(--text-soft); }
-        .hero-card-live { display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; font-weight: 700; color: var(--green); }
-        .hero-card-live::before { content: ''; width: 7px; height: 7px; background: var(--green); border-radius: 50%; animation: blink 2s infinite; }
-        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-        .hero-card-amount { font-family: 'DM Serif Display', serif; font-size: 3.2rem; color: var(--flame); margin-bottom: 0.25rem; }
-        .hero-card-amount small { font-family: 'Manrope', sans-serif; font-size: 0.85rem; color: var(--text-soft); font-weight: 500; }
-        .hero-card-note { font-size: 0.82rem; color: var(--text-soft); margin-bottom: 1.5rem; }
-
-        .hero-card-rows { border-top: 1px solid rgba(0,0,0,0.05); padding-top: 1.2rem; display: flex; flex-direction: column; gap: 0.6rem; }
-        .hero-card-row { display: flex; justify-content: space-between; font-size: 0.88rem; }
-        .hero-card-row .label { color: var(--text-soft); }
-        .hero-card-row .val { font-weight: 700; }
-        .hero-card-row .val.old { text-decoration: line-through; color: var(--text-soft); font-weight: 400; }
-        .hero-card-row .val.new { color: var(--green); }
-
-        .hero-float {
-            position: absolute; background: white; border-radius: var(--r-md); padding: 0.75rem 1.1rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08); display: flex; align-items: center; gap: 0.5rem;
-            font-weight: 700; font-size: 0.8rem;
-        }
-        .hero-float svg { width: 18px; height: 18px; flex-shrink: 0; }
-        .hero-float-1 { top: -16px; right: -20px; animation: floatA 5s ease-in-out infinite; }
-        .hero-float-2 { bottom: -12px; left: -24px; animation: floatA 5s ease-in-out infinite 1.5s; }
-        @keyframes floatA { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
-
-        @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
-
-        /* ═══ TRUST STRIP ═══ */
-        .trust-strip {
-            background: var(--white); border-top: 1px solid rgba(0,0,0,0.04); border-bottom: 1px solid rgba(0,0,0,0.04);
-            padding: 1.8rem 2rem;
-        }
-        .trust-strip-inner {
-            max-width: 1200px; margin: 0 auto;
-            display: flex; align-items: center; justify-content: center; gap: 3rem; flex-wrap: wrap;
-        }
-        .trust-chip {
-            display: flex; align-items: center; gap: 0.6rem;
-            font-size: 0.88rem; font-weight: 600; color: var(--text-mid);
-        }
-        .trust-chip-icon {
-            width: 36px; height: 36px; border-radius: 50%; background: var(--cream-warm);
-            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-        }
-        .trust-chip-icon svg { width: 18px; height: 18px; color: var(--flame); }
-
-        /* ═══ SECTION BASICS ═══ */
-        .sec { padding: 6rem 2rem; }
-        .sec-tag {
-            display: inline-block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em;
-            font-weight: 700; color: var(--flame); margin-bottom: 0.75rem;
-        }
-        .sec-title { font-size: clamp(1.9rem, 3.5vw, 2.8rem); letter-spacing: -0.01em; margin-bottom: 1rem; }
-        .sec-sub { font-size: 1.05rem; color: var(--text-mid); line-height: 1.75; max-width: 580px; }
-        .sec-header { text-align: center; max-width: 660px; margin: 0 auto 3.5rem; }
-        .sec-header .sec-sub { margin: 0 auto; }
-
-        /* ═══ PROMISE / USP ═══ */
-        .promise { background: var(--white); }
-        .promise-grid {
-            max-width: 1200px; margin: 0 auto;
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-        }
-        .promise-card {
-            background: var(--cream); border-radius: var(--r-lg); padding: 2.2rem;
-            border: 1px solid transparent; transition: all 0.4s ease; position: relative; overflow: hidden;
-        }
-        .promise-card:hover { border-color: rgba(232,87,31,0.12); transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.04); }
-        .promise-card::after {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, var(--flame), var(--flame-light)); opacity: 0; transition: opacity 0.3s;
-        }
-        .promise-card:hover::after { opacity: 1; }
-        .promise-icon {
-            width: 48px; height: 48px; border-radius: var(--r-md);
-            background: linear-gradient(135deg, var(--flame), var(--flame-light));
-            display: flex; align-items: center; justify-content: center; margin-bottom: 1.3rem;
-        }
-        .promise-icon svg { width: 24px; height: 24px; color: white; }
-        .promise-card h3 { font-size: 1.2rem; margin-bottom: 0.6rem; }
-        .promise-card p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; }
-
-        /* ═══ HOW / ABLAUF ═══ */
-        .how { background: var(--navy); color: white; position: relative; overflow: hidden; }
-        .how::before {
-            content: ''; position: absolute; top: 50%; left: 50%; width: 700px; height: 700px;
-            transform: translate(-50%, -50%);
-            background: radial-gradient(circle, rgba(232,87,31,0.07) 0%, transparent 70%); border-radius: 50%;
-        }
-        .how .sec-tag { color: var(--flame-light); }
-        .how .sec-sub { color: rgba(255,255,255,0.55); }
-        .how .sec-header { position: relative; z-index: 1; }
-
-        .steps-list { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; counter-reset: step; }
-        .step-item {
-            display: grid; grid-template-columns: 64px 1fr; gap: 1.8rem; align-items: start;
-            padding-bottom: 2.5rem; margin-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-        .step-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .step-num {
-            width: 56px; height: 56px; border-radius: 50%;
-            background: linear-gradient(135deg, var(--flame), var(--ember));
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: white;
-        }
-        .step-item h3 { font-size: 1.3rem; margin-bottom: 0.4rem; }
-        .step-item p { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.7; }
-
-        /* ═══ ABOUT ═══ */
-        .about-grid {
-            max-width: 1200px; margin: 0 auto;
-            display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
-        }
-        .about-text .sec-sub { max-width: 100%; }
-        .about-text p + p { margin-top: 1rem; }
-        .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
-        .stat {
-            background: var(--white); border-radius: var(--r-md); padding: 1.3rem; text-align: center;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.03);
-        }
-        .stat-num { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--flame); }
-        .stat-label { font-size: 0.78rem; color: var(--text-soft); margin-top: 0.2rem; font-weight: 600; }
-
-        .about-visual {
-            background: var(--cream-warm); border-radius: var(--r-lg); padding: 3rem;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 400px;
-        }
-        .about-timeline { width: 100%; max-width: 320px; }
-        .tl-item { display: flex; gap: 1rem; align-items: start; margin-bottom: 1.5rem; }
-        .tl-item:last-child { margin-bottom: 0; }
-        .tl-dot-wrap { display: flex; flex-direction: column; align-items: center; }
-        .tl-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--flame); flex-shrink: 0; border: 3px solid var(--cream-warm); }
-        .tl-line { width: 2px; height: 32px; background: rgba(232,87,31,0.2); }
-        .tl-item:last-child .tl-line { display: none; }
-        .tl-year { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--flame); }
-        .tl-desc { font-size: 0.82rem; color: var(--text-mid); line-height: 1.5; }
-
-        /* ═══ AUSSENDIENST ═══ */
-        .ad-section { background: var(--white); }
-        .ad-grid {
-            max-width: 1200px; margin: 0 auto;
-            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
-        }
-        .ad-visual {
-            background: var(--navy); border-radius: var(--r-lg); padding: 3rem;
-            min-height: 420px; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            position: relative; overflow: hidden;
-        }
-        .ad-visual::before {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(circle at 30% 70%, rgba(232,87,31,0.15), transparent 60%);
-        }
-        .ad-icon-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; position: relative; z-index: 1; }
-        .ad-icon-card {
-            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
-            border-radius: var(--r-md); padding: 1.5rem; text-align: center; color: white;
-        }
-        .ad-icon-card svg { width: 32px; height: 32px; color: var(--flame-light); margin-bottom: 0.75rem; }
-        .ad-icon-card span { display: block; font-size: 0.82rem; font-weight: 600; }
-
-        .ad-text h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); margin-bottom: 1rem; }
-        .ad-features { list-style: none; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
-        .ad-features li {
-            display: flex; align-items: start; gap: 0.75rem;
-            font-size: 0.92rem; color: var(--text-mid); line-height: 1.6;
-        }
-        .ad-features li svg { width: 20px; height: 20px; color: var(--green); flex-shrink: 0; margin-top: 2px; }
-
-        /* ═══ CTA BAND ═══ */
-        .cta-band {
-            background: linear-gradient(135deg, var(--flame), var(--ember));
-            padding: 4.5rem 2rem; text-align: center; position: relative; overflow: hidden;
-        }
-        .cta-band::before {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(circle at 25% 50%, rgba(255,200,150,0.2), transparent 50%),
-                        radial-gradient(circle at 75% 50%, rgba(196,62,12,0.3), transparent 50%);
-        }
-        .cta-band-inner { position: relative; z-index: 1; max-width: 650px; margin: 0 auto; }
-        .cta-band h2 { color: white; font-size: clamp(1.9rem, 3.5vw, 2.8rem); margin-bottom: 0.75rem; }
-        .cta-band p { color: rgba(255,255,255,0.85); font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.7; }
-
-        /* ═══ CONTACT ═══ */
-        .contact { background: var(--white); }
-        .contact-grid {
-            max-width: 1000px; margin: 0 auto;
-            display: grid; grid-template-columns: 1fr 1.2fr; gap: 3.5rem;
-        }
-        .contact-info h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
-        .contact-info > p { color: var(--text-mid); line-height: 1.7; margin-bottom: 1.5rem; }
-        .ci { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1rem; }
-        .ci-icon {
-            width: 40px; height: 40px; border-radius: 50%; background: var(--cream-warm);
-            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-        }
-        .ci-icon svg { width: 18px; height: 18px; color: var(--flame); }
-        .ci a { color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.92rem; transition: color 0.2s; }
-        .ci a:hover { color: var(--flame); }
-        .ci span { font-weight: 600; font-size: 0.92rem; }
-
-        .contact-form { display: flex; flex-direction: column; gap: 0.9rem; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
-        .fg { display: flex; flex-direction: column; gap: 0.3rem; }
-        .fg label { font-weight: 700; font-size: 0.78rem; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.04em; }
-        .fg input, .fg textarea, .fg select {
-            padding: 0.8rem 1rem; border: 2px solid rgba(0,0,0,0.06); border-radius: var(--r-sm);
-            font-family: 'Manrope', sans-serif; font-size: 0.92rem; background: var(--cream);
-            outline: none; transition: border-color 0.2s;
-        }
-        .fg input:focus, .fg textarea:focus, .fg select:focus { border-color: var(--flame); }
-        .fg textarea { resize: vertical; min-height: 100px; }
-
-        /* ═══ KARRIERE ═══ */
-        .karriere { background: var(--cream); }
-        .jobs-grid { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
-        .job-card {
-            background: var(--white); border-radius: var(--r-md); padding: 1.8rem 2rem;
-            border: 1px solid rgba(0,0,0,0.04); transition: all 0.3s; cursor: pointer;
-            display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1.5rem;
-        }
-        .job-card:hover { border-color: rgba(232,87,31,0.15); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.04); }
-        .job-title { font-family: 'DM Serif Display', serif; font-size: 1.2rem; margin-bottom: 0.3rem; }
-        .job-meta { display: flex; gap: 1.2rem; flex-wrap: wrap; }
-        .job-tag {
-            display: inline-flex; align-items: center; gap: 0.35rem;
-            font-size: 0.78rem; font-weight: 600; color: var(--text-soft);
-        }
-        .job-tag svg { width: 14px; height: 14px; }
-        .job-arrow { width: 40px; height: 40px; border-radius: 50%; background: var(--cream); display: flex; align-items: center; justify-content: center; transition: all 0.3s; flex-shrink: 0; }
-        .job-card:hover .job-arrow { background: var(--flame); }
-        .job-card:hover .job-arrow svg { color: white; }
-        .job-arrow svg { width: 18px; height: 18px; color: var(--text-soft); transition: color 0.3s; }
-
-        .job-detail { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.05); }
-        .job-detail.open { display: block; }
-        .job-detail p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 0.75rem; }
-        .job-detail ul { padding-left: 1.2rem; margin-bottom: 0.75rem; }
-        .job-detail li { font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; }
-        .job-apply { margin-top: 1rem; }
-
-        /* ═══ FOOTER ═══ */
-        .footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 4rem 2rem 2rem; }
-        .footer-inner { max-width: 1200px; margin: 0 auto; }
-        .footer-top {
-            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem;
-            padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-        .footer-brand .logo { margin-bottom: 1rem; }
-        .footer-brand .logo-name { color: white; }
-        .footer-brand p { font-size: 0.85rem; line-height: 1.7; max-width: 300px; }
-        .footer-col h4 { color: white; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.85rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-        .footer-col a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.87rem; transition: color 0.2s; }
-        .footer-col a:hover { color: var(--flame-light); }
-        .footer-bottom { padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; }
-        .footer-legal { display: flex; gap: 1.5rem; }
-        .footer-legal a { color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
-        .footer-legal a:hover { color: var(--flame-light); }
-
-        /* ═══ PAGE SECTIONS (SPA) ═══ */
-        .page-section { display: none; }
-        .page-section.active { display: block; }
-        #page-home { display: block; }
-
-        .page-hero {
-            padding: 10rem 2rem 4rem; text-align: center;
-            background: var(--navy); color: white; position: relative; overflow: hidden;
-        }
-        .page-hero::before {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(circle at 50% 100%, rgba(232,87,31,0.1), transparent 60%);
-        }
-        .page-hero h1 { font-size: clamp(2.2rem, 4vw, 3.2rem); position: relative; z-index: 1; margin-bottom: 0.75rem; }
-        .page-hero h1 em { color: var(--flame-light); }
-        .page-hero p { color: rgba(255,255,255,0.55); font-size: 1.05rem; position: relative; z-index: 1; max-width: 550px; margin: 0 auto; }
-
-        /* Light steps (for Außendienst page) */
-        .steps-light .step-item { color: var(--text); border-bottom-color: rgba(0,0,0,0.06); }
-        .steps-light .step-item h3 { color: var(--text); }
-        .steps-light .step-item p { color: var(--text-mid); }
-
-        /* ═══ RESPONSIVE ═══ */
-        @media (max-width: 968px) {
-            .hero-content { grid-template-columns: 1fr; text-align: center; }
-            .hero-sub { margin-left: auto; margin-right: auto; }
-            .hero-actions { justify-content: center; }
-            .hero-card-wrapper { max-width: 400px; margin: 0 auto; }
-            .hero-float { display: none; }
-            .promise-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
-            .about-grid, .ad-grid, .contact-grid { grid-template-columns: 1fr; }
-            .ad-visual { min-height: 320px; }
-            .about-visual { min-height: 320px; }
-            .footer-top { grid-template-columns: 1fr 1fr; }
-        }
-
-        @media (max-width: 640px) {
-            .nav-links { display: none; }
-            .hamburger { display: flex; }
-            .hero { padding: 7rem 1.5rem 3rem; min-height: auto; }
-            .sec { padding: 4rem 1.5rem; }
-            .form-row { grid-template-columns: 1fr; }
-            .trust-strip-inner { flex-direction: column; gap: 1rem; }
-            .about-stats { grid-template-columns: repeat(3, 1fr); }
-            .footer-top { grid-template-columns: 1fr; }
-            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
-            .step-item { grid-template-columns: 48px 1fr; gap: 1.2rem; }
-            .step-num { width: 48px; height: 48px; font-size: 1.1rem; }
-        }
-
-        /* reveal animation */
-        .reveal { opacity: 0; transform: translateY(28px); transition: all 0.8s cubic-bezier(0.16,1,0.3,1); }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- ═══ NAVIGATION ═══ -->
 <nav class="nav" id="nav">
     <div class="nav-inner">
-        <a href="#" class="logo" onclick="showPage('home');return false;">
+        <a href="/" class="logo">
             <div class="logo-icon">
                 <svg viewBox="0 0 22 22" fill="none"><path d="M11 2C11 2 6 8 6 12.5C6 15.5 8 18 11 18.5C14 18 16 15.5 16 12.5C16 8 11 2 11 2Z" fill="white" opacity="0.9"/><path d="M11 7C11 7 8.5 10.5 8.5 12.8C8.5 14.5 9.6 15.7 11 16C12.4 15.7 13.5 14.5 13.5 12.8C13.5 10.5 11 7 11 7Z" fill="#FFE0B2"/></svg>
             </div>
             <span class="logo-name">Deine <span>Sparflamme</span></span>
         </a>
         <ul class="nav-links">
-            <li><a href="#vorteile" onclick="showPage('home')">Vorteile</a></li>
-            <li><a href="#so-gehts" onclick="showPage('home')">So geht's</a></li>
-            <li><a href="#" onclick="showPage('aussendienst');return false;">Außendienst</a></li>
-            <li><a href="#ueber-uns" onclick="showPage('home')">Über uns</a></li>
-            <li><a href="#kontakt" onclick="showPage('home')" class="nav-cta">Rückruf anfordern</a></li>
+            <li><a href="#vorteile">Vorteile</a></li>
+            <li><a href="#so-gehts">So geht's</a></li>
+            <li><a href="/aussendienst.html">Außendienst</a></li>
+            <li><a href="#ueber-uns">Über uns</a></li>
+            <li><a href="#kontakt" class="nav-cta">Rückruf anfordern</a></li>
         </ul>
         <button class="hamburger" onclick="document.getElementById('mobileNav').classList.add('open')" aria-label="Menü">
             <span></span><span></span><span></span>
@@ -504,18 +36,13 @@
 
 <div class="mobile-nav" id="mobileNav">
     <button class="mobile-close" onclick="this.parentElement.classList.remove('open')">&times;</button>
-    <a href="#vorteile" onclick="showPage('home');this.parentElement.classList.remove('open')">Vorteile</a>
-    <a href="#so-gehts" onclick="showPage('home');this.parentElement.classList.remove('open')">So geht's</a>
-    <a href="#" onclick="showPage('aussendienst');this.parentElement.classList.remove('open');return false;">Außendienst</a>
-    <a href="#ueber-uns" onclick="showPage('home');this.parentElement.classList.remove('open')">Über uns</a>
-    <a href="#kontakt" onclick="showPage('home');this.parentElement.classList.remove('open')">Kontakt</a>
-    <a href="#" onclick="showPage('karriere');this.parentElement.classList.remove('open');return false;" style="font-size:1rem;color:var(--text-soft)">Karriere</a>
+    <a href="#vorteile" onclick="this.parentElement.classList.remove('open')">Vorteile</a>
+    <a href="#so-gehts" onclick="this.parentElement.classList.remove('open')">So geht's</a>
+    <a href="/aussendienst.html" onclick="this.parentElement.classList.remove('open')">Außendienst</a>
+    <a href="#ueber-uns" onclick="this.parentElement.classList.remove('open')">Über uns</a>
+    <a href="#kontakt" onclick="this.parentElement.classList.remove('open')">Kontakt</a>
+    <a href="/karriere.html" onclick="this.parentElement.classList.remove('open')" style="font-size:1rem;color:var(--text-soft)">Karriere</a>
 </div>
-
-<!-- ═══════════════════════════════════════ -->
-<!-- ═══ HOME PAGE ═══ -->
-<!-- ═══════════════════════════════════════ -->
-<div id="page-home" class="page-section active">
 
 <!-- HERO -->
 <section class="hero" id="hero">
@@ -582,7 +109,7 @@
     </div>
 </div>
 
-<!-- VORTEILE / VERSPRECHEN -->
+<!-- VORTEILE -->
 <section class="sec promise" id="vorteile">
     <div class="sec-header reveal">
         <div class="sec-tag">Unser Versprechen</div>
@@ -633,24 +160,15 @@
     <div class="steps-list">
         <div class="step-item reveal">
             <div class="step-num">1</div>
-            <div>
-                <h3>Kurzes Gespräch</h3>
-                <p>Du rufst uns an oder forderst einen Rückruf an. In 5 Minuten am Telefon klären wir deinen Verbrauch, deine aktuelle Situation und deine Wünsche. Mehr brauchst du nicht zu tun.</p>
-            </div>
+            <div><h3>Kurzes Gespräch</h3><p>Du rufst uns an oder forderst einen Rückruf an. In 5 Minuten am Telefon klären wir deinen Verbrauch, deine aktuelle Situation und deine Wünsche. Mehr brauchst du nicht zu tun.</p></div>
         </div>
         <div class="step-item reveal">
             <div class="step-num">2</div>
-            <div>
-                <h3>Wir finden den besten Tarif</h3>
-                <p>Wir durchsuchen über 100 Anbieter und stellen dir die optimalen Optionen vor – transparent, verständlich, mit persönlicher Empfehlung. Unterschrift digital per Handy.</p>
-            </div>
+            <div><h3>Wir finden den besten Tarif</h3><p>Wir durchsuchen über 100 Anbieter und stellen dir die optimalen Optionen vor – transparent, verständlich, mit persönlicher Empfehlung. Unterschrift digital per Handy.</p></div>
         </div>
         <div class="step-item reveal">
             <div class="step-num">3</div>
-            <div>
-                <h3>Fertig. Für immer.</h3>
-                <p>Wir kündigen deinen alten Vertrag, organisieren den Wechsel und überwachen deinen Tarif dauerhaft. Bevor dein Vertrag ausläuft, optimieren wir wieder – automatisch, ohne dass du etwas tun musst.</p>
-            </div>
+            <div><h3>Fertig. Für immer.</h3><p>Wir kündigen deinen alten Vertrag, organisieren den Wechsel und überwachen deinen Tarif dauerhaft. Bevor dein Vertrag ausläuft, optimieren wir wieder – automatisch, ohne dass du etwas tun musst.</p></div>
         </div>
     </div>
 </section>
@@ -753,249 +271,12 @@
     </div>
 </section>
 
-</div><!-- end page-home -->
-
-
-<!-- ═══════════════════════════════════════ -->
-<!-- ═══ AUSSENDIENST PAGE ═══ -->
-<!-- ═══════════════════════════════════════ -->
-<div id="page-aussendienst" class="page-section">
-
-<div class="page-hero">
-    <h1>Unser <em>Außendienst</em></h1>
-    <p>So kommen unsere Berater zu dir – persönlich, kompetent, und immer auf Augenhöhe.</p>
-</div>
-
-<section class="sec ad-section">
-    <div class="ad-grid">
-        <div class="ad-visual">
-            <div class="ad-icon-grid">
-                <div class="ad-icon-card">
-                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3l3 6h7l-5.5 4.5 2 7L16 16l-6.5 4.5 2-7L6 9h7z"/></svg>
-                    <span>Geschult &amp; zertifiziert</span>
-                </div>
-                <div class="ad-icon-card">
-                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 28V16l12-12 12 12v12"/><path d="M12 28v-8h8v8"/></svg>
-                    <span>Beratung an deiner Tür</span>
-                </div>
-                <div class="ad-icon-card">
-                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="20" height="24" rx="2"/><path d="M12 8h8M12 12h8M12 16h5"/></svg>
-                    <span>Alles dabei – digital</span>
-                </div>
-                <div class="ad-icon-card">
-                    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 28s10-5 10-13V7l-10-4-10 4v8c0 8 10 13 10 13z"/></svg>
-                    <span>Seriös &amp; transparent</span>
-                </div>
-            </div>
-        </div>
-        <div class="ad-text reveal">
-            <div class="sec-tag">Persönlich vor Ort</div>
-            <h2>Energie-Beratung, die zu dir kommt</h2>
-            <p class="sec-sub">Unser Außendienst-Team besucht dich persönlich – ob an der Haustür oder nach Termin. Kein Druck, keine Tricks. Nur eine ehrliche Beratung mit dem Ziel, dir Geld zu sparen.</p>
-            <ul class="ad-features">
-                <li><svg viewBox="0 0 20 20" fill="none"><path d="M16.7 5.3l-8.5 8.5L4 9.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Ausweispflichtig – unsere Berater legitimieren sich immer</li>
-                <li><svg viewBox="0 0 20 20" fill="none"><path d="M16.7 5.3l-8.5 8.5L4 9.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Volle Widerrufsbelehrung gemäß BGB §312b – 14 Tage Widerrufsrecht</li>
-                <li><svg viewBox="0 0 20 20" fill="none"><path d="M16.7 5.3l-8.5 8.5L4 9.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Digitaler Vertragsabschluss per Tablet – kein Papierchaos</li>
-                <li><svg viewBox="0 0 20 20" fill="none"><path d="M16.7 5.3l-8.5 8.5L4 9.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Transparenter Tarifvergleich: alter Preis vs. neuer Preis</li>
-                <li><svg viewBox="0 0 20 20" fill="none"><path d="M16.7 5.3l-8.5 8.5L4 9.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Keine versteckten Kosten – die Beratung ist immer kostenlos</li>
-                <li><svg viewBox="0 0 20 20" fill="none"><path d="M16.7 5.3l-8.5 8.5L4 9.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Nachbetreuung inklusive: auch nach dem Wechsel dein Ansprechpartner</li>
-            </ul>
-        </div>
-    </div>
-</section>
-
-<section class="sec" style="background: var(--white);">
-    <div class="sec-header reveal">
-        <div class="sec-tag">Ablauf Hausbesuch</div>
-        <h2 class="sec-title">So läuft ein Besuch ab</h2>
-        <p class="sec-sub">Ob spontan an der Tür oder nach Terminvereinbarung – der Ablauf ist immer transparent und ohne Druck.</p>
-    </div>
-    <div class="steps-list steps-light" style="max-width:800px;margin:0 auto;">
-        <div class="step-item reveal">
-            <div class="step-num">1</div>
-            <div>
-                <h3>Vorstellung &amp; Legitimation</h3>
-                <p>Unser Berater stellt sich vor, zeigt seinen Ausweis und erklärt, wer wir sind und was wir machen. Kein Druck, kein Zeitdruck.</p>
-            </div>
-        </div>
-        <div class="step-item reveal">
-            <div class="step-num">2</div>
-            <div>
-                <h3>Verbrauch &amp; Situation prüfen</h3>
-                <p>Anhand deiner letzten Rechnung oder Zählernummer prüfen wir deinen aktuellen Tarif und zeigen dir, was möglich ist.</p>
-            </div>
-        </div>
-        <div class="step-item reveal">
-            <div class="step-num">3</div>
-            <div>
-                <h3>Tarifvergleich &amp; Empfehlung</h3>
-                <p>Du siehst auf dem Tablet den direkten Vergleich: alter Preis vs. neuer Preis. Transparent, verständlich, ohne Kleingedrucktes.</p>
-            </div>
-        </div>
-        <div class="step-item reveal">
-            <div class="step-num">4</div>
-            <div>
-                <h3>Abschluss oder Bedenkzeit</h3>
-                <p>Wenn du willst, schließen wir direkt digital ab – mit voller Widerrufsbelehrung. Oder du denkst in Ruhe nach. Beides ist völlig okay.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="cta-band">
-    <div class="cta-band-inner reveal">
-        <h2>Unser Team bei dir vor Ort?</h2>
-        <p>Fordere einen kostenlosen Beratungstermin an – wir kommen zu dir, egal wo du in Deutschland wohnst.</p>
-        <a href="#kontakt" onclick="showPage('home')" class="btn btn-white">
-            Termin anfragen
-            <svg viewBox="0 0 18 18" fill="none"><path d="M3.5 9h11m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-    </div>
-</section>
-
-</div><!-- end page-aussendienst -->
-
-
-<!-- ═══════════════════════════════════════ -->
-<!-- ═══ KARRIERE PAGE ═══ -->
-<!-- ═══════════════════════════════════════ -->
-<div id="page-karriere" class="page-section">
-
-<div class="page-hero">
-    <h1>Karriere bei <em>Deine Sparflamme</em></h1>
-    <p>Wir wachsen und suchen Leute, die Energie haben – im doppelten Sinne.</p>
-</div>
-
-<section class="sec karriere">
-    <div class="sec-header reveal">
-        <div class="sec-tag">Offene Stellen</div>
-        <h2 class="sec-title">Werde Teil unseres Teams</h2>
-        <p class="sec-sub">Wir sind ein junges, wachsendes Unternehmen mit erfahrenem Kern. Hier bist du kein Rädchen – hier machst du den Unterschied.</p>
-    </div>
-    <div class="jobs-grid">
-
-        <!-- Job 1: Energieberater D2D -->
-        <div class="job-card reveal" onclick="toggleJob(this)">
-            <div>
-                <div class="job-title">Energieberater im Außendienst (D2D)</div>
-                <div class="job-meta">
-                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 12.25s5.25-3.5 5.25-7a5.25 5.25 0 10-10.5 0c0 3.5 5.25 7 5.25 7z"/><circle cx="7" cy="5.25" r="1.75"/></svg> Deutschlandweit</span>
-                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.25"/><path d="M7 4.25v2.75l2 1.25"/></svg> Vollzeit</span>
-                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.75" y="3.5" width="10.5" height="7" rx="1"/><path d="M1.75 5.75h10.5"/></svg> Fixum + Provision</span>
-                </div>
-            </div>
-            <div class="job-arrow"><svg viewBox="0 0 18 18" fill="none"><path d="M6.75 4.5L11.25 9l-4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="job-detail" style="grid-column: 1 / -1;">
-                <p>Du gehst raus, klingelst an Türen und hilfst Menschen, bei Strom und Gas richtig Geld zu sparen. Kein Kaltverkauf im klassischen Sinn – du bietest echten Mehrwert und ein Produkt, bei dem der Kunde immer gewinnt.</p>
-                <p><strong>Was du mitbringst:</strong></p>
-                <ul>
-                    <li>Kommunikationsstärke und keine Scheu vor der Haustür</li>
-                    <li>Eigeninitiative und Biss – du arbeitest selbstständig im Feld</li>
-                    <li>Erfahrung im Vertrieb oder D2D ist ein Plus, aber kein Muss</li>
-                    <li>Führerschein und Mobilität</li>
-                </ul>
-                <p><strong>Was wir bieten:</strong></p>
-                <ul>
-                    <li>Attraktives Fixgehalt + ungedeckelte Provision</li>
-                    <li>Intensive Einarbeitung und Schulung</li>
-                    <li>Ein Produkt, hinter dem du stehen kannst</li>
-                    <li>Flache Hierarchien, direkter Draht zur Geschäftsführung</li>
-                    <li>Echte Aufstiegschancen in einem wachsenden Unternehmen</li>
-                </ul>
-                <div class="job-apply"><a href="#kontakt" onclick="showPage('home')" class="btn btn-flame">Jetzt bewerben</a></div>
-            </div>
-        </div>
-
-        <!-- Job 2: Teamleiter -->
-        <div class="job-card reveal" onclick="toggleJob(this)">
-            <div>
-                <div class="job-title">Teamleiter Außendienst</div>
-                <div class="job-meta">
-                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 12.25s5.25-3.5 5.25-7a5.25 5.25 0 10-10.5 0c0 3.5 5.25 7 5.25 7z"/><circle cx="7" cy="5.25" r="1.75"/></svg> Nürnberg + Region</span>
-                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.25"/><path d="M7 4.25v2.75l2 1.25"/></svg> Vollzeit</span>
-                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.75" y="3.5" width="10.5" height="7" rx="1"/><path d="M1.75 5.75h10.5"/></svg> Fixum + Team-Provision</span>
-                </div>
-            </div>
-            <div class="job-arrow"><svg viewBox="0 0 18 18" fill="none"><path d="M6.75 4.5L11.25 9l-4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="job-detail" style="grid-column: 1 / -1;">
-                <p>Du baust ein eigenes Außendienst-Team auf, schulst neue Berater und gehst selbst mit gutem Beispiel voran. Führungsposition mit echtem Gestaltungsspielraum.</p>
-                <p><strong>Was du mitbringst:</strong></p>
-                <ul>
-                    <li>Erfahrung im D2D-Vertrieb oder Außendienst (mind. 1 Jahr)</li>
-                    <li>Führungsqualitäten und die Fähigkeit, ein Team zu motivieren</li>
-                    <li>Organisationstalent und Eigenverantwortung</li>
-                    <li>Idealerweise Erfahrung in der Energiebranche</li>
-                </ul>
-                <p><strong>Was wir bieten:</strong></p>
-                <ul>
-                    <li>Attraktives Fixum + Provision auf Eigenleistung und Team-Leistung</li>
-                    <li>Echte Mitgestaltung – du baust deinen Bereich mit auf</li>
-                    <li>Direkter Draht zur Geschäftsführung</li>
-                    <li>Perspektive: Regionalleitung oder mehr</li>
-                </ul>
-                <div class="job-apply"><a href="#kontakt" onclick="showPage('home')" class="btn btn-flame">Jetzt bewerben</a></div>
-            </div>
-        </div>
-
-        <!-- Job 3: IT-Entwickler -->
-        <div class="job-card reveal" onclick="toggleJob(this)">
-            <div>
-                <div class="job-title">IT-Entwickler / Fullstack (m/w/d)</div>
-                <div class="job-meta">
-                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 12.25s5.25-3.5 5.25-7a5.25 5.25 0 10-10.5 0c0 3.5 5.25 7 5.25 7z"/><circle cx="7" cy="5.25" r="1.75"/></svg> Nürnberg / Remote</span>
-                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.25"/><path d="M7 4.25v2.75l2 1.25"/></svg> Vollzeit</span>
-                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.75" y="3.5" width="10.5" height="7" rx="1"/><path d="M1.75 5.75h10.5"/></svg> Festgehalt</span>
-                </div>
-            </div>
-            <div class="job-arrow"><svg viewBox="0 0 18 18" fill="none"><path d="M6.75 4.5L11.25 9l-4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="job-detail" style="grid-column: 1 / -1;">
-                <p>Du baust unser Kundenportal und Tarifvergleichssystem von Grund auf mit auf. Echte Greenfield-Entwicklung – kein Legacy-Code, volle Mitgestaltung.</p>
-                <p><strong>Was du mitbringst:</strong></p>
-                <ul>
-                    <li>Erfahrung mit modernem Web-Stack (React, Node.js, PHP oder ähnlich)</li>
-                    <li>Gespür für gute UX und sauberen Code</li>
-                    <li>Eigenverantwortliches Arbeiten – du bist der/die Erste im IT-Team</li>
-                    <li>Interesse an Energiewirtschaft und Automatisierung ist ein Plus</li>
-                </ul>
-                <p><strong>Was wir bieten:</strong></p>
-                <ul>
-                    <li>Greenfield-Projekt: Du baust die technische Infrastruktur mit auf</li>
-                    <li>Remote oder Hybrid (Büro in Nürnberg)</li>
-                    <li>Direkter Einfluss auf Produktentscheidungen</li>
-                    <li>Wachstumsperspektive: CTO-Track bei passendem Profil</li>
-                </ul>
-                <div class="job-apply"><a href="#kontakt" onclick="showPage('home')" class="btn btn-flame">Jetzt bewerben</a></div>
-            </div>
-        </div>
-
-        <!-- Job 4: Initiativ -->
-        <div class="job-card reveal" onclick="toggleJob(this)">
-            <div>
-                <div class="job-title">Initiativbewerbung</div>
-                <div class="job-meta">
-                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 12.25s5.25-3.5 5.25-7a5.25 5.25 0 10-10.5 0c0 3.5 5.25 7 5.25 7z"/><circle cx="7" cy="5.25" r="1.75"/></svg> Flexibel</span>
-                    <span class="job-tag"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.25"/><path d="M7 4.25v2.75l2 1.25"/></svg> Voll-/Teilzeit</span>
-                </div>
-            </div>
-            <div class="job-arrow"><svg viewBox="0 0 18 18" fill="none"><path d="M6.75 4.5L11.25 9l-4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="job-detail" style="grid-column: 1 / -1;">
-                <p>Du passt in keine Schublade, willst aber trotzdem Teil von etwas Wachsendem sein? Schick uns deine Bewerbung – wir sind offen für kreative Köpfe in Vertrieb, Marketing, Kundenservice und mehr.</p>
-                <div class="job-apply"><a href="#kontakt" onclick="showPage('home')" class="btn btn-flame">Initiativ bewerben</a></div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-</div><!-- end page-karriere -->
-
-
 <!-- ═══ FOOTER ═══ -->
 <footer class="footer">
     <div class="footer-inner">
         <div class="footer-top">
             <div class="footer-brand">
-                <a href="#" class="logo" onclick="showPage('home');return false;">
+                <a href="/" class="logo">
                     <div class="logo-icon" style="width:32px;height:32px;border-radius:8px;">
                         <svg viewBox="0 0 22 22" fill="none" style="width:18px;height:18px;"><path d="M11 2C11 2 6 8 6 12.5C6 15.5 8 18 11 18.5C14 18 16 15.5 16 12.5C16 8 11 2 11 2Z" fill="white" opacity="0.9"/><path d="M11 7C11 7 8.5 10.5 8.5 12.8C8.5 14.5 9.6 15.7 11 16C12.4 15.7 13.5 14.5 13.5 12.8C13.5 10.5 11 7 11 7Z" fill="#FFE0B2"/></svg>
                     </div>
@@ -1006,11 +287,11 @@
             <div class="footer-col">
                 <h4>Navigation</h4>
                 <ul>
-                    <li><a href="#vorteile" onclick="showPage('home')">Vorteile</a></li>
-                    <li><a href="#so-gehts" onclick="showPage('home')">So geht's</a></li>
-                    <li><a href="#" onclick="showPage('aussendienst');return false;">Außendienst</a></li>
-                    <li><a href="#ueber-uns" onclick="showPage('home')">Über uns</a></li>
-                    <li><a href="#kontakt" onclick="showPage('home')">Kontakt</a></li>
+                    <li><a href="#vorteile">Vorteile</a></li>
+                    <li><a href="#so-gehts">So geht's</a></li>
+                    <li><a href="/aussendienst.html">Außendienst</a></li>
+                    <li><a href="#ueber-uns">Über uns</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -1025,7 +306,7 @@
             <div class="footer-col">
                 <h4>Unternehmen</h4>
                 <ul>
-                    <li><a href="#" onclick="showPage('karriere');return false;">Karriere</a></li>
+                    <li><a href="/karriere.html">Karriere</a></li>
                     <li><a href="mailto:info@deine-sparflamme.de">E-Mail</a></li>
                     <li><a href="tel:+4991112345678">Anrufen</a></li>
                 </ul>
@@ -1042,59 +323,14 @@
 </footer>
 
 <script>
-    // ═══ NAV SCROLL ═══
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
-
-    // ═══ SCROLL REVEAL ═══
     const revealObs = new IntersectionObserver((entries) => {
         entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    function observeReveals() {
-        document.querySelectorAll('.reveal:not(.visible)').forEach(el => revealObs.observe(el));
-    }
-    observeReveals();
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-    // ═══ SPA ROUTING ═══
-    function showPage(page) {
-        document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-        const target = document.getElementById('page-' + page);
-        if (target) {
-            target.classList.add('active');
-            setTimeout(observeReveals, 50);
-            if (page !== 'home') window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    }
-
-    // Smooth scroll for hash links
-    document.addEventListener('click', function(e) {
-        const a = e.target.closest('a[href^="#"]');
-        if (!a) return;
-        const hash = a.getAttribute('href');
-        if (hash === '#') return;
-        const target = document.querySelector(hash);
-        if (target) {
-            e.preventDefault();
-            setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
-        }
-    });
-
-    // ═══ JOB TOGGLE ═══
-    function toggleJob(card) {
-        const detail = card.querySelector('.job-detail');
-        const wasOpen = detail.classList.contains('open');
-        document.querySelectorAll('.job-detail').forEach(d => d.classList.remove('open'));
-        if (!wasOpen) detail.classList.add('open');
-    }
-
-    // ═══ FORM SUBMIT ═══
-    function submitForm() {
-        const tel = document.querySelector('#contactForm input[type="tel"]');
-        if (!tel.value.trim()) { tel.focus(); tel.style.borderColor = '#E8571F'; return; }
-        alert('Vielen Dank! Wir melden uns so schnell wie möglich bei dir.');
-    }
-
-    // ═══ SAVINGS COUNTER ═══
+    // Savings counter
     const savEl = document.getElementById('savingsCounter');
     if (savEl) {
         const sObs = new IntersectionObserver((entries) => {
@@ -1114,6 +350,13 @@
             });
         }, { threshold: 0.5 });
         sObs.observe(savEl);
+    }
+
+    // Form submit
+    function submitForm() {
+        const tel = document.querySelector('#contactForm input[type="tel"]');
+        if (!tel.value.trim()) { tel.focus(); tel.style.borderColor = '#E8571F'; return; }
+        alert('Vielen Dank! Wir melden uns so schnell wie möglich bei dir.');
     }
 </script>
 

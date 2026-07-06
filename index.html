@@ -54,18 +54,23 @@
             display: inline-flex;
             align-items: center;
             gap: 7px;
-            padding: 9px 18px;
-            border: 1.5px solid #E8571F;
+            padding: 10px 20px;
+            background: #E8571F;
+            border: none;
             border-radius: 999px;
-            color: #E8571F;
+            color: #fff;
             font-weight: 700;
             font-size: .92rem;
             text-decoration: none;
-            transition: background .2s ease, color .2s ease;
+            transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
             white-space: nowrap;
         }
         .nav-portal svg { width: 16px; height: 16px; }
-        .nav-portal:hover { background: #E8571F; color: #fff; }
+        .nav-portal:hover {
+            background: #cf4a15;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(232,87,31,.3);
+        }
         .mobile-portal {
             display: inline-flex;
             align-items: center;

@@ -75,6 +75,19 @@ h1, h2, h3 { font-family: 'DM Serif Display', serif; font-weight: 400; line-heig
 }
 .nav-cta:hover { background: var(--flame) !important; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,87,31,0.3); }
 
+/* Kundenportal-Button (Nav) */
+.nav-links a.nav-portal {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--flame) !important; color: var(--white) !important;
+    padding: 0.6rem 1.4rem; border-radius: var(--r-pill);
+    font-size: 0.85rem !important; transition: all 0.3s !important;
+}
+.nav-links a.nav-portal svg { width: 15px; height: 15px; }
+.nav-links a.nav-portal:hover {
+    background: var(--ember) !important; color: var(--white) !important;
+    transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,87,31,0.3);
+}
+
 .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; }
 .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: 0.3s; }
 
@@ -83,6 +96,16 @@ h1, h2, h3 { font-family: 'DM Serif Display', serif; font-weight: 400; line-heig
 .mobile-nav a { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--text); text-decoration: none; }
 .mobile-nav a:hover { color: var(--flame); }
 .mobile-close { position: absolute; top: 1.5rem; right: 2rem; background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text); }
+
+/* Kundenportal-Button (Mobile-Menü) */
+.mobile-nav a.mobile-portal {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'Manrope', sans-serif; font-size: 1.1rem; font-weight: 700;
+    background: var(--flame); color: var(--white);
+    padding: 0.7rem 1.8rem; border-radius: var(--r-pill);
+}
+.mobile-nav a.mobile-portal:hover { background: var(--ember); color: var(--white); }
+.mobile-nav a.mobile-portal svg { width: 20px; height: 20px; }
 
 /* ═══ HERO ═══ */
 .hero {

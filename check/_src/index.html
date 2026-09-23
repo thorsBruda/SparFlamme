@@ -56,7 +56,7 @@
                 <p>Jeder Mitarbeiter von Deine Sparflamme hat einen Ausweis mit Mitarbeiternummer. Gib die Nummer oder den Namen ein und du siehst sofort, ob die Person zu uns gehört.</p>
                 <form class="search-form" id="searchForm" autocomplete="off">
                     <label for="q" class="sr-only" style="position:absolute;left:-9999px">Mitarbeiternummer oder Name</label>
-                    <input id="q" name="q" type="text" placeholder="Nummer oder Nachname" inputmode="text" required>
+                    <input id="q" name="q" type="text" placeholder="z. B. 00188 oder Pommer" inputmode="text" required>
                     <button type="submit">Prüfen</button>
                 </form>
                 <p class="search-msg" id="msg" role="status"></p>
@@ -93,7 +93,8 @@ var MITARBEITER = {{MITARBEITER_JSON}};
         var v = norm(q.value);
         if (!v) return;
         var hit = MITARBEITER.filter(function (m) {
-            return norm(m.nummer) === v || norm(m.nummer).replace(/^dsf/, '') === v ||
+            var nr = norm(m.nummer), vz = v.replace(/^0+/, '') || v;
+            return nr === v || nr.replace(/^0+/, '') === vz ||
                    norm(m.nachname) === v || norm(m.vorname + m.nachname) === v || norm(m.nachname + m.vorname) === v ||
                    norm(m.email) === v || m.slug === v;
         });

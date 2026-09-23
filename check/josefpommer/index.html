@@ -57,8 +57,8 @@
                     <div class="badge-head">
                         <div class="photo">
                             <div class="photo-inner" id="photoInner">
-                                <img src="foto.jpg" alt="Foto von Josef Pommer" id="photo"
-                                     onerror="this.hidden=true;this.parentElement.classList.add('no-photo')">
+                                <img src="https://app.d-sf.de/api/check/00188/foto.jpg" alt="Foto von Josef Pommer" id="photo"
+                                     onerror="if(!this.dataset.lokal){this.dataset.lokal=1;this.src='foto.jpg'}else{this.hidden=true;this.parentElement.classList.add('no-photo')}">
                                 <span class="initials" aria-hidden="true">JP</span>
                             </div>
                         </div>

@@ -188,6 +188,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 .facts div:nth-child(1) { animation-delay: 1.5s; }
 .facts div:nth-child(2) { animation-delay: 1.62s; }
 .facts div:nth-child(3) { animation-delay: 1.74s; }
+.facts div:nth-child(4) { animation-delay: 1.86s; }
 .facts dt { color: var(--text-soft); font-size: 0.86rem; font-weight: 600; white-space: nowrap; }
 .facts .dots { flex: 1; border-bottom: 2px dotted rgba(26, 26, 26, 0.18); transform: translateY(-4px); min-width: 12px; }
 .facts dd { font-weight: 700; font-size: 0.98rem; text-align: right; min-width: 0; overflow-wrap: anywhere; }

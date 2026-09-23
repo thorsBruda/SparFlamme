@@ -7,7 +7,8 @@
     "email": "t.merkl@d-sf.de",
     "position": "Inhaber und Teamleiter Außendienst",
     "region": "Nürnberg",
-    "aktiv": true
+    "aktiv": true,
+    "telefon": ""
   },
   {
     "slug": "sandropoppe",
@@ -17,7 +18,8 @@
     "email": "s.poppe@d-sf.de",
     "position": "Energieberater im Außendienst",
     "region": "Nürnberg",
-    "aktiv": true
+    "aktiv": true,
+    "telefon": ""
   },
   {
     "slug": "josefpommer",
@@ -27,6 +29,7 @@
     "email": "j.pommer@d-sf.de",
     "position": "Energieberater im Außendienst",
     "region": "Amberg",
-    "aktiv": true
+    "aktiv": true,
+    "telefon": "015510289853"
   }
 ]

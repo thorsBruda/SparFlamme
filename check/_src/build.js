@@ -16,7 +16,15 @@ const stand = new Date().toLocaleDateString('de-DE', { day: 'numeric', month: 'l
 const aktive = data.filter(m => m.aktiv !== false);
 for (const m of aktive) {
     if (!/^[a-z0-9-]+$/.test(m.slug)) throw new Error('Ungültiger Slug: ' + m.slug);
+    // Arbeitstelefon: Anzeige 0155 1028 9853, Link tel:+49...
+    const telRoh = String(m.telefon || '').replace(/[^\d+]/g, '');
+    const telLink = telRoh ? (telRoh.startsWith('+') ? telRoh : '+49' + telRoh.replace(/^0/, '')) : '';
+    const telAnzeige = telRoh ? telRoh.replace(/^(\+49|0)/, '0').replace(/^(0\d{3})(\d+)$/, '$1 $2') : '';
+    const telefonRow = telRoh
+        ? `                        <div><dt>Telefon</dt><span class="dots"></span><dd><a href="tel:${esc(telLink)}">${esc(telAnzeige)}</a></dd></div>\n`
+        : '';
     const vars = {
+        TELEFON_ROW: telefonRow,
         SLUG: m.slug, VORNAME: esc(m.vorname), NACHNAME: esc(m.nachname), NUMMER: esc(m.nummer),
         EMAIL: esc(m.email), POSITION: esc(m.position), REGION: esc(m.region || 'Nürnberg'),
         INITIALEN: esc((m.vorname[0] || '') + (m.nachname[0] || '')), STAND: stand,
@@ -25,7 +33,7 @@ for (const m of aktive) {
     const dir = path.join(root, m.slug);
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(path.join(dir, 'index.html'), html);
-    console.log('✓ check/' + m.slug + '/  ' + m.nummer + '  ' + m.vorname + ' ' + m.nachname + (fs.existsSync(path.join(dir, 'foto.jpg')) ? '' : '  (kein foto.jpg, Initialen)'));
+    console.log('✓ check/' + m.slug + '/  ' + m.nummer + '  ' + m.vorname + ' ' + m.nachname + (fs.existsSync(path.join(dir, 'foto.jpg')) ? '' : '  (kein foto.jpg, Initialen)') + (telRoh ? '' : '  (kein Telefon)'));
 }
 
 // Inaktive: Seite entfernen, damit der Link ins Leere läuft

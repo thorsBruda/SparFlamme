@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitarbeiter-Check | Deine Sparflamme</title>
+    <meta name="description" content="Steht jemand von Deine Sparflamme vor deiner Tür? Prüfe hier mit Mitarbeiternummer oder Name, ob die Person wirklich zu uns gehört.">
+    <link rel="canonical" href="https://www.deine-sparflamme.de/check/">
+    <meta name="theme-color" content="#0B1A2E">
+    <meta property="og:title" content="Mitarbeiter-Check | Deine Sparflamme">
+    <meta property="og:description" content="Prüfe mit Mitarbeiternummer oder Name, ob die Person vor deiner Tür wirklich zu Deine Sparflamme gehört.">
+    <meta property="og:url" content="https://www.deine-sparflamme.de/check/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.deine-sparflamme.de/logo.png">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="check.css">
+</head>
+<body>
+
+<div class="stage" aria-hidden="true">
+    <div class="stage-lamp"></div>
+    <div class="stage-grain"></div>
+    <div class="embers">
+        <span style="--x:8%;--dur:16s;--delay:0s;--drift:30px"></span>
+        <span style="--x:22%;--dur:19s;--delay:3s;--drift:-24px"></span>
+        <span style="--x:37%;--dur:14s;--delay:6s;--drift:18px"></span>
+        <span style="--x:55%;--dur:21s;--delay:1.5s;--drift:-36px"></span>
+        <span style="--x:68%;--dur:17s;--delay:8s;--drift:26px"></span>
+        <span style="--x:81%;--dur:15s;--delay:4.5s;--drift:-20px"></span>
+        <span style="--x:93%;--dur:20s;--delay:10s;--drift:14px"></span>
+    </div>
+</div>
+
+<div class="page">
+    <header class="topbar">
+        <a href="../index.html" class="brand">
+            <img src="../logo.png" alt="">
+            <span class="brand-name">Deine <span>Sparflamme</span></span>
+        </a>
+        <span class="topbar-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+            Mitarbeiter-Check
+        </span>
+    </header>
+
+    <main>
+        <section class="search-card">
+            <div class="holo" aria-hidden="true"></div>
+            <div class="badge-body">
+                <h1>Wer steht vor deiner Tür?</h1>
+                <p>Jeder Mitarbeiter von Deine Sparflamme hat einen Ausweis mit Mitarbeiternummer. Gib die Nummer oder den Namen ein und du siehst sofort, ob die Person zu uns gehört.</p>
+                <form class="search-form" id="searchForm" autocomplete="off">
+                    <label for="q" class="sr-only" style="position:absolute;left:-9999px">Mitarbeiternummer oder Name</label>
+                    <input id="q" name="q" type="text" placeholder="Nummer oder Nachname" inputmode="text" required>
+                    <button type="submit">Prüfen</button>
+                </form>
+                <p class="search-msg" id="msg" role="status"></p>
+            </div>
+        </section>
+
+        <div class="after">
+            <p class="lead">Kein Treffer oder ein ungutes Gefühl? Dann ruf uns direkt an.</p>
+            <a class="call" href="tel:+4991113039585">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg>
+                0911 13039585
+            </a>
+            <p class="call-hint">Mo bis Fr. Wir bestätigen dir jeden Mitarbeiter persönlich.</p>
+        </div>
+    </main>
+
+    <footer class="foot">
+        <a href="../index.html">Website</a>
+        <a href="../aussendienst.html">Außendienst</a>
+        <a href="https://portal.deine-sparflamme.de">Kundenportal</a>
+        <a href="../impressum.html">Impressum</a>
+        <a href="../datenschutz.html">Datenschutz</a>
+        <span class="stand">© 2026 Deine Sparflamme, Nürnberg</span>
+    </footer>
+</div>
+
+<script>
+var MITARBEITER = [{"slug":"thorwinmerkl","vorname":"Thorwin","nachname":"Merkl","nummer":"DSF-1001","email":"t.merkl@d-sf.de"},{"slug":"sandropoppe","vorname":"Sandro","nachname":"Poppe","nummer":"DSF-1002","email":"s.poppe@d-sf.de"},{"slug":"josefpommer","vorname":"Josef","nachname":"Pommer","nummer":"DSF-1003","email":"j.pommer@d-sf.de"}];
+(function () {
+    var form = document.getElementById('searchForm'), q = document.getElementById('q'), msg = document.getElementById('msg');
+    function norm(s) { return String(s || '').toLowerCase().replace(/[^a-z0-9äöüß]/g, ''); }
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var v = norm(q.value);
+        if (!v) return;
+        var hit = MITARBEITER.filter(function (m) {
+            return norm(m.nummer) === v || norm(m.nummer).replace(/^dsf/, '') === v ||
+                   norm(m.nachname) === v || norm(m.vorname + m.nachname) === v || norm(m.nachname + m.vorname) === v ||
+                   norm(m.email) === v || m.slug === v;
+        });
+        if (hit.length === 1) { msg.textContent = 'Gefunden, einen Moment.'; location.href = './' + hit[0].slug + '/'; return; }
+        msg.textContent = 'Dazu haben wir keinen Mitarbeiter. Prüfe die Schreibweise oder ruf uns an.';
+    });
+})();
+</script>
+</body>
+</html>

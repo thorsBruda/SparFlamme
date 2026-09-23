@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "thorwinmerkl",
+    "vorname": "Thorwin",
+    "nachname": "Merkl",
+    "nummer": "DSF-1001",
+    "email": "t.merkl@d-sf.de",
+    "position": "Inhaber und Teamleiter Außendienst",
+    "region": "Nürnberg",
+    "aktiv": true
+  },
+  {
+    "slug": "sandropoppe",
+    "vorname": "Sandro",
+    "nachname": "Poppe",
+    "nummer": "DSF-1002",
+    "email": "s.poppe@d-sf.de",
+    "position": "Energieberater im Außendienst",
+    "region": "Nürnberg",
+    "aktiv": true
+  },
+  {
+    "slug": "josefpommer",
+    "vorname": "Josef",
+    "nachname": "Pommer",
+    "nummer": "DSF-1003",
+    "email": "j.pommer@d-sf.de",
+    "position": "Energieberater im Außendienst",
+    "region": "Amberg",
+    "aktiv": true
+  }
+]

@@ -31,5 +31,16 @@
     "region": "Amberg",
     "aktiv": true,
     "telefon": "015510289853"
+  },
+  {
+    "slug": "dennisgottschalk",
+    "vorname": "Dennis",
+    "nachname": "Gottschalk",
+    "nummer": "00190",
+    "email": "d.gottschalk@d-sf.de",
+    "position": "Energieberater im Außendienst",
+    "region": "Nürnberg",
+    "aktiv": true,
+    "telefon": ""
   }
 ]

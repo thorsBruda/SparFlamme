@@ -261,8 +261,6 @@ h1, h2, h3 { font-family: 'DM Serif Display', serif; font-weight: 400; line-heig
 
 /* ═══ FAQ ═══ */
 .faq { position: relative; }
-.faq .sec-sub a { color: var(--flame); font-weight: 700; text-decoration: none; white-space: nowrap; }
-.faq .sec-sub a:hover { color: var(--ember); }
 .faq-list { max-width: 800px; margin: 0 auto; display: grid; gap: 1rem; counter-reset: faq; }
 .faq-item {
     background: var(--white); border-radius: var(--r-lg); border: 1px solid transparent;

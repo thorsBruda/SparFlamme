@@ -493,27 +493,30 @@
         </div>
         <div class="contact-form reveal" id="contactForm">
             <div class="form-row">
-                <div class="fg"><label>Vorname</label><input type="text" placeholder="Max"></div>
-                <div class="fg"><label>Nachname</label><input type="text" placeholder="Mustermann"></div>
+                <div class="fg"><label for="f-vorname">Vorname</label><input type="text" id="f-vorname" name="vorname" placeholder="Max" autocomplete="given-name"></div>
+                <div class="fg"><label for="f-nachname">Nachname</label><input type="text" id="f-nachname" name="nachname" placeholder="Mustermann" autocomplete="family-name"></div>
             </div>
-            <div class="fg"><label>Telefonnummer *</label><input type="tel" placeholder="+49 123 456 789" required></div>
-            <div class="fg"><label>E-Mail (optional)</label><input type="email" placeholder="max@beispiel.de"></div>
-            <div class="fg"><label>Straße</label><input type="text" placeholder="Musterstraße"></div>
+            <div class="fg"><label for="f-telefon">Telefonnummer *</label><input type="tel" id="f-telefon" name="telefon" placeholder="+49 123 456 789" required autocomplete="tel"></div>
+            <div class="fg"><label for="f-email">E-Mail (optional)</label><input type="email" id="f-email" name="email" placeholder="max@beispiel.de" autocomplete="email"></div>
+            <div class="fg"><label for="f-strasse">Straße</label><input type="text" id="f-strasse" name="strasse" placeholder="Musterstraße" autocomplete="street-address"></div>
             <div class="form-row">
-                <div class="fg"><label>PLZ</label><input type="text" placeholder="90402" maxlength="5"></div>
-                <div class="fg"><label>Ort</label><input type="text" placeholder="Nürnberg"></div>
+                <div class="fg"><label for="f-plz">PLZ</label><input type="text" id="f-plz" name="plz" placeholder="90402" maxlength="5" inputmode="numeric" autocomplete="postal-code"></div>
+                <div class="fg"><label for="f-ort">Ort</label><input type="text" id="f-ort" name="ort" placeholder="Nürnberg" autocomplete="address-level2"></div>
             </div>
             <div class="fg">
-                <label>Wann dürfen wir anrufen?</label>
-                <select>
+                <label for="f-anrufzeit">Wann dürfen wir anrufen?</label>
+                <select id="f-anrufzeit" name="anrufzeit">
                     <option>Egal – jederzeit</option>
                     <option>Vormittags (9–12 Uhr)</option>
                     <option>Nachmittags (12–17 Uhr)</option>
                     <option>Abends (17–20 Uhr)</option>
                 </select>
             </div>
-            <div class="fg"><label>Nachricht (optional)</label><textarea placeholder="Z.B. aktueller Anbieter, Verbrauch, oder einfach Hallo..."></textarea></div>
-            <button class="btn btn-flame" type="button" onclick="submitForm()">
+            <div class="fg"><label for="f-nachricht">Nachricht (optional)</label><textarea id="f-nachricht" name="nachricht" placeholder="Z.B. aktueller Anbieter, Verbrauch, oder einfach Hallo..."></textarea></div>
+            <div class="fg hp" aria-hidden="true"><label for="f-firma">Firma</label><input type="text" id="f-firma" name="firma" tabindex="-1" autocomplete="off"></div>
+            <p class="form-note">Mit dem Absenden stimmst du zu, dass wir deine Angaben zur Bearbeitung deiner Anfrage nutzen. Details in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+            <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
+            <button class="btn btn-flame" type="button" id="formSubmit" onclick="submitForm()">
                 Rückruf anfordern
                 <svg viewBox="0 0 18 18" fill="none"><path d="M3.5 9h11m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
@@ -602,11 +605,42 @@
         sObs.observe(savEl);
     }
 
-    // Form submit
-    function submitForm() {
-        const tel = document.querySelector('#contactForm input[type="tel"]');
-        if (!tel.value.trim()) { tel.focus(); tel.style.borderColor = '#E8571F'; return; }
-        alert('Vielen Dank! Wir melden uns so schnell wie möglich bei dir.');
+    // Form submit → App-Backend (speichert den Lead und mailt an info@deine-sparflamme.de)
+    const FORM_ENDPOINT = 'https://api.d-sf.de/api/website/anfrage';
+    const formStart = Date.now();
+    async function submitForm() {
+        const f = document.getElementById('contactForm');
+        const v = (n) => (f.querySelector('[name="' + n + '"]')?.value || '').trim();
+        const tel = f.querySelector('[name="telefon"]');
+        const status = document.getElementById('formStatus');
+        const btn = document.getElementById('formSubmit');
+        status.className = 'form-status'; status.textContent = '';
+        if (!v('telefon') || v('telefon').replace(/\D/g, '').length < 6) {
+            tel.focus(); tel.style.borderColor = '#E8571F';
+            status.className = 'form-status err'; status.textContent = 'Bitte eine gültige Telefonnummer angeben, damit wir dich zurückrufen können.';
+            return;
+        }
+        tel.style.borderColor = '';
+        btn.disabled = true; btn.style.opacity = '0.6';
+        try {
+            const r = await fetch(FORM_ENDPOINT, {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    vorname: v('vorname'), nachname: v('nachname'), telefon: v('telefon'), email: v('email'),
+                    strasse: v('strasse'), plz: v('plz'), ort: v('ort'), anrufzeit: v('anrufzeit'), nachricht: v('nachricht'),
+                    firma: v('firma'), dauerMs: Date.now() - formStart, quelle: 'index'
+                })
+            });
+            const d = await r.json().catch(() => ({}));
+            if (!r.ok) throw new Error(d.error || 'Senden fehlgeschlagen');
+            f.querySelectorAll('input, textarea').forEach(el => { el.value = ''; });
+            status.className = 'form-status ok'; status.textContent = 'Vielen Dank! Wir melden uns so schnell wie möglich bei dir.';
+        } catch (e) {
+            status.className = 'form-status err';
+            status.textContent = (e.message && e.message !== 'Failed to fetch' ? e.message : 'Das hat leider nicht geklappt.') + ' Ruf uns gern direkt an oder schreib an info@deine-sparflamme.de.';
+        } finally {
+            btn.disabled = false; btn.style.opacity = '';
+        }
     }
 </script>
 

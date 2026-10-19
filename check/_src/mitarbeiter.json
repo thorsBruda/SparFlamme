@@ -42,5 +42,16 @@
     "region": "Nürnberg",
     "aktiv": true,
     "telefon": "015511549450"
+  },
+  {
+    "slug": "jessicamitterer",
+    "vorname": "Jessica",
+    "nachname": "Mitterer",
+    "nummer": "00191",
+    "email": "j.mitterer@d-sf.de",
+    "position": "Energieberaterin im Außendienst",
+    "region": "Nürnberg",
+    "aktiv": true,
+    "telefon": ""
   }
 ]

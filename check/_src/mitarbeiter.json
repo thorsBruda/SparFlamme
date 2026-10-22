@@ -41,7 +41,7 @@
     "position": "Energieberater im Außendienst",
     "region": "Nürnberg",
     "aktiv": true,
-    "telefon": "015511549450"
+    "telefon": ""
   },
   {
     "slug": "jessicamitterer",
@@ -52,6 +52,17 @@
     "position": "Energieberaterin im Außendienst",
     "region": "Nürnberg",
     "aktiv": true,
-    "telefon": ""
+    "telefon": "015511551642"
+  },
+  {
+    "slug": "dominikjonas",
+    "vorname": "Dominik",
+    "nachname": "Jonas",
+    "nummer": "00192",
+    "email": "d.jonas@d-sf.de",
+    "position": "Energieberater im Außendienst",
+    "region": "Nürnberg",
+    "aktiv": true,
+    "telefon": "015511549450"
   }
 ]
